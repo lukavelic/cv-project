@@ -2,6 +2,7 @@ import React from 'react';
 import './Cv.css';
 import Card from './UI/Card';
 import Title from './UI/Title';
+import Input from './UI/Input';
 import InputControls from './InputControls';
 
 class Cv extends React.Component {
@@ -21,6 +22,7 @@ class Cv extends React.Component {
                         return (
                             <Card>
                                 <Title text={title}/>
+                                <Input/>
                             </Card>
                         )
                     })
