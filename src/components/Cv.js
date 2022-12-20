@@ -2,8 +2,7 @@ import React from 'react';
 import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
-import Title from './UI/Title';
-import Description from './UI/Description';
+import Section from './UI/Section';
 
 class Cv extends React.Component {
     constructor(props) {
@@ -44,14 +43,17 @@ class Cv extends React.Component {
     };
 
     render() {
+        // const changeSectionHandler = data => {
+        //     console.log(data);
+        // };
+
         return(
             <Card className='cv-container'>
                 {
                     this.state.sections.map((section) => {
                         return (
-                            <Card>
-                                <Title text={section.title} id={section.id}/>
-                                <Description text={section.text} inEdit={section.inEdit}/>
+                            <Card className='section'>
+                                <Section sectionData={section}/>
                             </Card>
                         )
                     })

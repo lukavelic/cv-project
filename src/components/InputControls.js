@@ -14,13 +14,13 @@ class InputControls extends React.Component {
         if(this.props.description) {
             if(this.props.inEdit) {
                 return (
-                    <Card className='input'>
-                        <CheckButton className='button'/>
+                    <Card className='button-container'>
+                        <CheckButton className='button' onClick={() => {console.log('clickity click')}}/>
                     </Card>
                 );
             } else {
                 return (
-                    <Card className='input'>
+                    <Card className='button-container'>
                         <EditButton className='button'/>
                     </Card>
                 ); 
@@ -28,7 +28,7 @@ class InputControls extends React.Component {
             
         } else {
             return (
-                <Card className='input'>
+                <Card className='button-container'>
                     <EditButton className='button'/>
                     <DeleteButton className='button'/>
                 </Card>
