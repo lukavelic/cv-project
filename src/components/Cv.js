@@ -6,12 +6,22 @@ import Title from './UI/Title';
 class Cv extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            titles: ['Personal Info', 'Education', 'Experience', 'Skills'],
+            title: '',
+        }
     };
 
     render() {
         return(
             <Card className='cv-container'>
-                <Title text='Test text'/>
+                {
+                    this.state.titles.map((title) => {
+                        return (
+                            <Title text={title}/>
+                        )
+                    })
+                }
             </Card>
         );
     };
