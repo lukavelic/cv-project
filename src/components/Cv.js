@@ -2,6 +2,7 @@ import React from 'react';
 import './Cv.css';
 import Card from './UI/Card';
 import Title from './UI/Title';
+import InputControls from './InputControls';
 
 class Cv extends React.Component {
     constructor(props) {
@@ -18,7 +19,9 @@ class Cv extends React.Component {
                 {
                     this.state.titles.map((title) => {
                         return (
-                            <Title text={title}/>
+                            <Card>
+                                <Title text={title}/>
+                            </Card>
                         )
                     })
                 }

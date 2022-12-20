@@ -1,6 +1,7 @@
 import React from 'react';
 import './Title.css';
 import Card from './Card';
+import InputControls from '../InputControls';
 
 class Title extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Title extends React.Component {
         return (
             <Card className='title'>
                 {text}
+                <InputControls/>
             </Card>
         );
     };
