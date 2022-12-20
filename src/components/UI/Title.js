@@ -10,9 +10,10 @@ class Title extends React.Component {
 
     render() {
         const text = this.props.text;
+        const key = this.props.id
 
         return (
-            <Card className='title'>
+            <Card className='title' key={key}>
                 {text}
                 <InputControls/>
             </Card>

@@ -1,16 +1,41 @@
 import React from 'react';
+import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
 import Title from './UI/Title';
 import Input from './UI/Input';
-import InputControls from './InputControls';
 
 class Cv extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            titles: ['Personal Info', 'Education', 'Experience', 'Skills'],
-            title: '',
+            sections: [
+                {
+                    title: 'Personal Info',
+                    text: '',
+                    id: uniqid(),
+                },
+                {
+                    title: 'Education',
+                    text: '',
+                    id: uniqid(),
+                },
+                {
+                    title: 'Work Experience',
+                    text: '',
+                    id: uniqid(),
+                },
+                {
+                    title: 'Skills',
+                    text: '',
+                    id: uniqid(),
+                },
+            ],
+            section: {
+                title: '',
+                text: '',
+                id: uniqid(),
+            },
         }
     };
 
@@ -18,10 +43,10 @@ class Cv extends React.Component {
         return(
             <Card className='cv-container'>
                 {
-                    this.state.titles.map((title) => {
+                    this.state.sections.map((section) => {
                         return (
                             <Card>
-                                <Title text={title}/>
+                                <Title text={section.title} id={section.id}/>
                                 <Input/>
                             </Card>
                         )
