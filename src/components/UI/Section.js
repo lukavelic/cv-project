@@ -12,8 +12,8 @@ class Section extends React.Component {
 
         return (
             <Card>
-                <Title text={this.props.sectionData.title} id={this.props.sectionData.id}/>
-                <Description text={this.props.sectionData.text} inEdit={this.props.sectionData.inEdit}/>
+                <Title text={this.props.sectionData.title} inEdit={this.props.sectionData.titleInEdit} id={this.props.sectionData.id}/>
+                <Description text={this.props.sectionData.text} inEdit={this.props.sectionData.descriptionInEdit}/>
             </Card>
         );
     };

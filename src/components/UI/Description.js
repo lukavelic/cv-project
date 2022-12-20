@@ -25,7 +25,7 @@ class Description extends React.Component {
                     <InputControls description={true} inEdit={this.props.inEdit}/>
                 </Card>
             );
-        }
+        };
     };
 };
 
