@@ -1,9 +1,9 @@
 import React from "react";
-import './Input.css';
+import './Description.css';
 import InputControls from "../InputControls";
 import Card from "./Card";
 
-class Input extends React.Component {
+class Description extends React.Component {
     constructor(props) {
         super(props);
     };
@@ -18,4 +18,4 @@ class Input extends React.Component {
     };
 };
 
-export default Input;
+export default Description;

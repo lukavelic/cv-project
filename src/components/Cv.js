@@ -3,7 +3,7 @@ import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
 import Title from './UI/Title';
-import Input from './UI/Input';
+import Description from './UI/Description';
 
 class Cv extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class Cv extends React.Component {
                         return (
                             <Card>
                                 <Title text={section.title} id={section.id}/>
-                                <Input/>
+                                <Description/>
                             </Card>
                         )
                     })
