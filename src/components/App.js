@@ -6,7 +6,7 @@ import Cv from './Cv';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div  className='container'>
         <Header/>
         <Cv/>
       </div>

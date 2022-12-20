@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cv.css';
+import Card from './Card';
 
 class Cv extends React.Component {
     constructor(props) {
@@ -8,7 +9,9 @@ class Cv extends React.Component {
 
     render() {
         return(
-            <div>CV</div>
+            <Card className='cv-container'>
+            CV
+            </Card>
         );
     };
 };
