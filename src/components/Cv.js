@@ -13,21 +13,25 @@ class Cv extends React.Component {
                 {
                     title: 'Personal Info',
                     text: '',
+                    inEdit: true,
                     id: uniqid(),
                 },
                 {
                     title: 'Education',
                     text: '',
+                    inEdit: true,
                     id: uniqid(),
                 },
                 {
                     title: 'Work Experience',
-                    text: '',
+                    text: 'test',
+                    inEdit: false,
                     id: uniqid(),
                 },
                 {
                     title: 'Skills',
                     text: '',
+                    inEdit: true,
                     id: uniqid(),
                 },
             ],
@@ -47,7 +51,7 @@ class Cv extends React.Component {
                         return (
                             <Card>
                                 <Title text={section.title} id={section.id}/>
-                                <Description/>
+                                <Description text={section.text} inEdit={section.inEdit}/>
                             </Card>
                         )
                     })

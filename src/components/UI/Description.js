@@ -9,12 +9,23 @@ class Description extends React.Component {
     };
 
     render() {
-        return (
-            <Card>
-                <input type='text' placeholder="Please type details here..."/>
-                <InputControls isItAnInput={true}/>
-            </Card>
-        );
+        if(this.props.inEdit) {
+            return (
+                <Card>
+                    <input type='text' placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
+                    <InputControls description={true} inEdit={this.props.inEdit}/>
+                </Card>
+            );
+        } else {
+            return (
+                <Card>
+                    <p>
+                        {this.props.text}
+                    </p>
+                    <InputControls description={true} inEdit={this.props.inEdit}/>
+                </Card>
+            );
+        }
     };
 };
 

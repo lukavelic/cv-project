@@ -11,12 +11,21 @@ class InputControls extends React.Component {
     };
 
     render() {
-        if(this.props.isItAnInput) {
-            return (
-                <Card className='input'>
-                    <CheckButton className='button'/>
-                </Card>
-            );
+        if(this.props.description) {
+            if(this.props.inEdit) {
+                return (
+                    <Card className='input'>
+                        <CheckButton className='button'/>
+                    </Card>
+                );
+            } else {
+                return (
+                    <Card className='input'>
+                        <EditButton className='button'/>
+                    </Card>
+                ); 
+            }
+            
         } else {
             return (
                 <Card className='input'>
