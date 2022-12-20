@@ -12,7 +12,7 @@ class Input extends React.Component {
         return (
             <Card>
                 <input type='text' placeholder="Please type details here..."/>
-                <InputControls/>
+                <InputControls isItAnInput={true}/>
             </Card>
         );
     };
