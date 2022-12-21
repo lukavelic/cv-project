@@ -2,6 +2,7 @@ import React from 'react';
 import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
+import NewSection from './UI/NewSection';
 import Section from './UI/Section';
 
 class Cv extends React.Component {
@@ -25,7 +26,7 @@ class Cv extends React.Component {
                 },
                 {
                     title: 'Work Experience',
-                    text: 'test',
+                    text: '',
                     titleInEdit: false,
                     descriptionInEdit: true,
                     id: uniqid(),
@@ -39,7 +40,7 @@ class Cv extends React.Component {
                 },
             ],
             section: {
-                title: '',
+                title: 'New Section',
                 text: '',
                 titleInEdit: false,
                 descriptionInEdit: true,
@@ -50,7 +51,7 @@ class Cv extends React.Component {
 
     render() {
         const defaultSection = {
-            title: '',
+            title: 'New Section',
             text: '',
             titleInEdit: false,
             descriptionInEdit: true,
@@ -174,6 +175,23 @@ class Cv extends React.Component {
             );
         };
 
+        const addNewSection = () => {
+            const newArr = this.state.sections.concat(defaultSection);
+            
+            const newSection = {
+                title: 'New Section',
+                text: '',
+                titleInEdit: false,
+                descriptionInEdit: true,
+                id: uniqid(),
+            };
+
+            this.setState({
+                sections: newArr,
+                section: newSection,
+            })
+        }
+
         return(
             <Card className='cv-container'>
                 {
@@ -183,6 +201,7 @@ class Cv extends React.Component {
                         )
                     })
                 }
+                <NewSection clickController={addNewSection}/>
             </Card>
         );
     };

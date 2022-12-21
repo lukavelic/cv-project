@@ -11,6 +11,10 @@
     fill: white;
 }
 
+path {
+    fill: rgb(22, 50, 79);
+}
+
 .button-container {
     display: flex;
     border: none;
