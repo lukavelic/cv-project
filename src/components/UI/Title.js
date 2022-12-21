@@ -9,11 +9,15 @@ class Title extends React.Component {
     };
 
     render() {
+        const clickController = (data) => {
+            this.props.clickController(data);
+        };
+
         if(this.props.inEdit) {
             return (
                 <Card>
                     <input type='text' placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
-                    <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id}/>
+                    <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         } else {
@@ -22,7 +26,7 @@ class Title extends React.Component {
                     <p>
                         {this.props.text}
                     </p>
-                    <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id}/>
+                    <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         };

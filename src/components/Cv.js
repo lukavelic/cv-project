@@ -49,16 +49,98 @@ class Cv extends React.Component {
     };
 
     render() {
-        // const changeSectionHandler = data => {
-        //     console.log(data);
-        // };
+        const onInputClickHandler = (data) => {
+            const id = data.id.value;
+            const inputType = data['data-type'].value;
+            const isDescription = data['data-description'].value;
+            console.log(isDescription)
+
+            const defaultSection = {
+                title: '',
+                text: '',
+                titleInEdit: false,
+                descriptionInEdit: true,
+                id: uniqid(),
+            };
+
+            const i = this.state.sections.findIndex((section) => {
+                return section.id === id
+            });
+
+            if(isDescription === true) {
+                if(inputType === 'check') {
+                    console.log('check desc')
+                    const section = this.state.sections[i]
+                    section.descriptionInEdit = false;
+
+                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i));
+
+                    this.setState(
+                        {
+                            sections: newArr,
+                            section: defaultSection,
+                        }
+                    );
+                } else {
+                    console.log('edit desc')
+                    const section = this.state.sections[i]
+                    section.descriptionInEdit = true;
+
+                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i));
+
+                    this.setState(
+                        {
+                            sections: newArr,
+                            section: defaultSection,
+                        }
+                    );
+                };
+            } else {
+                if(inputType === 'check') {
+                    console.log('check title')
+                    const section = this.state.sections[i]
+                    section.titleInEdit = false;
+
+                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i));
+
+                    this.setState(
+                        {
+                            sections: newArr,
+                            section: defaultSection,
+                        }
+                    );
+                } else if (inputType === 'edit') {
+                    console.log('edit title')
+                    const section = this.state.sections[i]
+                    section.titleInEdit = true;
+
+                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i));
+
+                    this.setState(
+                        {
+                            sections: newArr,
+                            section: defaultSection,
+                        }
+                    );
+                } else {
+                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i+1));
+
+                    this.setState(
+                        {
+                            sections: newArr,
+                            section: defaultSection,
+                        }
+                    );
+                }
+            }
+        };
 
         return(
             <Card className='cv-container'>
                 {
                     this.state.sections.map((section) => {
                         return (
-                            <Section sectionData={section}/>
+                            <Section sectionData={section} clickController={onInputClickHandler}/>
                         )
                     })
                 }

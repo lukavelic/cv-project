@@ -7,22 +7,26 @@ class Description extends React.Component {
     constructor(props) {
         super(props);
     };
-
+    
     render() {
+        const clickController = (data) => {
+            this.props.clickController(data);
+        };
+
         if(this.props.inEdit) {
             return (
                 <Card>
-                    <input type='text' placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
-                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id}/>
+                    <input type='text' id={this.props.id} placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
+                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         } else {
             return (
                 <Card>
-                    <p>
+                    <p className="text-description" id={this.props.id}>
                         {this.props.text}
                     </p>
-                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id}/>
+                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         };
