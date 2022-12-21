@@ -13,10 +13,14 @@ class Title extends React.Component {
             this.props.clickController(data);
         };
 
+        const inputController = (e) => {
+            this.props.inputController(e);
+        }
+
         if(this.props.inEdit) {
             return (
                 <Card>
-                    <input type='text' placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
+                    <input type='text' id={this.props.id} placeholder="Please type details here..." data-description={false} onChange={inputController} defaultValue={this.props.text ? this.props.text : ''}/>
                     <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
