@@ -19,14 +19,14 @@ class Description extends React.Component {
 
         if(this.props.inEdit) {
             return (
-                <Card>
-                    <input type='text' id={this.props.id} placeholder="Please type details here..." data-description={true} onChange={inputController} defaultValue={this.props.text ? this.props.text : ''}/>
+                <Card className={this.props.className}>
+                    <textarea className="input text-area" id={this.props.id} placeholder="Please type details here..." data-description={true} onChange={inputController} defaultValue={this.props.text ? this.props.text : ''}/>
                     <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         } else {
             return (
-                <Card>
+                <Card className={this.props.className}s>
                     <p className="text-description" id={this.props.id}>
                         {this.props.text}
                     </p>

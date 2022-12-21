@@ -8,7 +8,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <header className='header'>Test</header>
+            <header className='header'>CV React Project</header>
         );
     };
 };

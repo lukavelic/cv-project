@@ -19,15 +19,15 @@ class Title extends React.Component {
 
         if(this.props.inEdit) {
             return (
-                <Card>
-                    <input type='text' id={this.props.id} placeholder="Please type details here..." data-description={false} onChange={inputController} defaultValue={this.props.text ? this.props.text : ''}/>
+                <Card className={this.props.className}>
+                    <input className='input text' type='text' id={this.props.id} placeholder="Please type details here..." data-description={false} onChange={inputController} defaultValue={this.props.text ? this.props.text : ''}/>
                     <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>
                 </Card>
             );
         } else {
             return (
-                <Card>
-                    <p>
+                <Card className={this.props.className}>
+                    <p className="text-title">
                         {this.props.text}
                     </p>
                     <InputControls description={false} inEdit={this.props.inEdit} id={this.props.id} determineClickData={clickController}/>

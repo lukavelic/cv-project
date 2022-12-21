@@ -1,3 +1,16 @@
 .title {
-    border: solid black 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 12px;
+    /* border: solid black 1px; */
+}
+
+.text-title {
+    margin: 12px;
+
+    font-weight: 700;
+    font-size: 1.25rem;
 }

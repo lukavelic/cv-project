@@ -3,6 +3,20 @@
     height: auto;
 }
 
+.button:hover {
+    cursor: pointer;
+}
+
+.button:hover path {
+    fill: white;
+}
+
+.button-container {
+    display: flex;
+    border: none;
+    margin: 12px;
+}
+
 path {
     pointer-events: none;
 }
