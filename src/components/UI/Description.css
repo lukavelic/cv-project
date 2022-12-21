@@ -15,4 +15,5 @@
 
 .text-description {
     margin: 12px;
+    white-space: pre-wrap;
 }

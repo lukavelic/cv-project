@@ -69,7 +69,6 @@ class Cv extends React.Component {
 
             if(isDescription === 'true') {
                 if(inputType === 'check') {
-                    console.log('check desc')
                     const section = this.state.sections[i]
                     section.descriptionInEdit = false;
 
@@ -83,7 +82,6 @@ class Cv extends React.Component {
                         }
                     );
                 } else {
-                    console.log('edit desc')
                     const section = this.state.sections[i]
                     section.descriptionInEdit = true;
 
@@ -101,7 +99,6 @@ class Cv extends React.Component {
                 };
             } else {
                 if(inputType === 'check') {
-                    console.log('check title')
                     const section = this.state.sections[i]
                     section.titleInEdit = false;
 
@@ -115,7 +112,6 @@ class Cv extends React.Component {
                         }
                     );
                 } else if (inputType === 'edit') {
-                    console.log('edit title')
                     const section = this.state.sections[i]
                     section.titleInEdit = true;
 
@@ -145,16 +141,9 @@ class Cv extends React.Component {
             const id = data.target.id;
             const isDescription = data.target.attributes['data-description'].value;
 
-            console.log(data)
-
-            console.log(id);
-            console.log(isDescription);
-
             const i = this.state.sections.findIndex((section) => {
                 return section.id === id
             });
-
-            console.log(i);
 
             const section = this.state.sections[i]
 
