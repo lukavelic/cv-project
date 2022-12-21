@@ -27,12 +27,21 @@ class InputControls extends React.Component {
             }
             
         } else {
-            return (
-                <Card className='button-container'>
-                    <EditButton className='button'/>
-                    <DeleteButton className='button'/>
-                </Card>
-            );
+            if(this.props.inEdit) {
+                return (
+                    <Card className='button-container'>
+                        <CheckButton className='button' onClick={() => {console.log('clickity click')}}/>
+                        <DeleteButton className='button'/>
+                    </Card>
+                );
+            } else {
+                return (
+                    <Card className='button-container'>
+                        <EditButton className='button'/>
+                        <DeleteButton className='button'/>
+                    </Card>
+                ); 
+            }
         }
         
     };

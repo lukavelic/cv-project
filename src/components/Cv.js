@@ -58,9 +58,7 @@ class Cv extends React.Component {
                 {
                     this.state.sections.map((section) => {
                         return (
-                            <Card className='section'>
-                                <Section sectionData={section}/>
-                            </Card>
+                            <Section sectionData={section}/>
                         )
                     })
                 }

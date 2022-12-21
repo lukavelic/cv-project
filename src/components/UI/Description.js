@@ -13,7 +13,7 @@ class Description extends React.Component {
             return (
                 <Card>
                     <input type='text' placeholder="Please type details here..." defaultValue={this.props.text ? this.props.text : ''}/>
-                    <InputControls description={true} inEdit={this.props.inEdit}/>
+                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id}/>
                 </Card>
             );
         } else {
@@ -22,7 +22,7 @@ class Description extends React.Component {
                     <p>
                         {this.props.text}
                     </p>
-                    <InputControls description={true} inEdit={this.props.inEdit}/>
+                    <InputControls description={true} inEdit={this.props.inEdit} id={this.props.id}/>
                 </Card>
             );
         };
