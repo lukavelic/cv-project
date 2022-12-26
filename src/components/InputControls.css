@@ -9,10 +9,13 @@
 
 .button:hover path {
     fill: white;
+    stroke: rgb(22, 50, 79);
+    stroke-width: 1px;
 }
 
 path {
     fill: rgb(22, 50, 79);
+    
 }
 
 .button-container {

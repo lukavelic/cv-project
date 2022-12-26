@@ -1,4 +1,10 @@
 .add-button {
-    width: 48px;
-    height: auto;
+    width: 60px;
+    height: 48px;
+}
+
+.add-button:hover path {
+    fill: white;
+    stroke: rgb(22, 50, 79);
+    stroke-width: 1px;
 }
