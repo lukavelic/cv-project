@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import './Subsection.css'
 
 class Subsection extends React.Component {
     constructor(props) {
