@@ -22,7 +22,7 @@ class Section extends React.Component {
         if(this.props.section.type === 'general') {
             if(this.props.section.inEdit === true) {
                 return(
-                    <Card className='general-section'>
+                    <Card className='section'>
                         <Card className='title'>
                             <input className='input text' type='text' id={this.props.section.id} placeholder="Please type details here..." onChange={inputController} defaultValue={this.props.section.text ? this.props.section.text : ''}/>
                             <InputControls type={this.props.section.type} inEdit={this.props.section.inEdit} id={this.props.section.id} determineClickData={clickController}/>
@@ -34,7 +34,7 @@ class Section extends React.Component {
                 )
             } else {
                 return(
-                    <Card className='general-section'>
+                    <Card className='section'>
                         <Card className='title'>
                             <p className="text-title">
                                 {this.props.section.text}
@@ -51,12 +51,12 @@ class Section extends React.Component {
             }; 
         } else {
             return(
-                <Card className='info'>
-                    <p>{this.props.section.title}</p>
+                <Card className='section'>
+                    <p className="text-title">{this.props.section.title}</p>
                     {
                         this.props.section.subsections.map((element) => {
                             return (
-                                <Card>
+                                <Card className='subsection'>
                                     <Subsection type={this.props.section.type} inEdit={this.props.section.inEdit} subsection={element}></Subsection>
                                     <InputControls type={this.props.section.type} inEdit={this.props.section.inEdit} id={this.props.id} determineClickData={clickController}/>
                                 </Card>
