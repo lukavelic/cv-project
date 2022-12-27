@@ -1,8 +1,9 @@
 import React from 'react';
 import './Section.css';
 import Card from './Card';
-import Title from './Title';
-import Description from './Description';
+import InputControls from '../InputControls';
+import Subsection from './Subsection';
+import {ReactComponent as AddButton} from '../../assets/plus-circle-multiple.svg'
 
 class Section extends React.Component {
     constructor(props) {
@@ -17,12 +18,55 @@ class Section extends React.Component {
             this.props.inputController(data);
         }
 
-        return (
-            <Card className='section'>
-                <Title className='title' text={this.props.sectionData.title} inEdit={this.props.sectionData.titleInEdit} id={this.props.sectionData.id} clickController={clickController} inputController={inputController}/>
-                <Description className='description' text={this.props.sectionData.text} inEdit={this.props.sectionData.descriptionInEdit} id={this.props.sectionData.id} clickController={clickController} inputController={inputController}/>
-            </Card>
-        );
+
+        if(this.props.section.type === 'general') {
+            if(this.props.section.inEdit === true) {
+                return(
+                    <Card className='general-section'>
+                        <Card className='title'>
+                            <input className='input text' type='text' id={this.props.section.id} placeholder="Please type details here..." onChange={inputController} defaultValue={this.props.section.text ? this.props.section.text : ''}/>
+                            <InputControls type={this.props.section.type} inEdit={this.props.section.inEdit} id={this.props.section.id} determineClickData={clickController}/>
+                        </Card>
+                        <Card className='description'>
+                            <textarea className="input text-area" id={this.props.section.id} placeholder="Please type details here..." onChange={inputController} defaultValue={this.props.section.text ? this.props.section.text : ''}/>
+                        </Card>
+                    </Card>
+                )
+            } else {
+                return(
+                    <Card className='general-section'>
+                        <Card className='title'>
+                            <p className="text-title">
+                                {this.props.section.text}
+                            </p>
+                            <InputControls type={this.props.section.type} inEdit={this.props.section.inEdit} id={this.props.id} determineClickData={clickController}/>
+                        </Card>
+                        <Card className='description'>
+                            <p className="text-regular">
+                                {this.props.section.text}
+                            </p>
+                        </Card>
+                    </Card>
+                );
+            }; 
+        } else {
+            return(
+                <Card className='info'>
+                    <p>{this.props.section.title}</p>
+                    {
+                        this.props.section.subsections.map((element) => {
+                            return (
+                                <Card>
+                                    <Subsection type={this.props.section.type} inEdit={this.props.section.inEdit} subsection={element}></Subsection>
+                                    <InputControls type={this.props.section.type} inEdit={this.props.section.inEdit} id={this.props.id} determineClickData={clickController}/>
+                                </Card>
+                            )
+                        })
+                    }
+                    <AddButton/>
+                </Card>
+            );
+        };
     };
 };
 

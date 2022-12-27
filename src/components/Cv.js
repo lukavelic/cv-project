@@ -3,7 +3,8 @@ import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
 import NewSection from './UI/NewSection';
-import Section from './UI/Section';
+import Section from '../components/UI/Section'
+import {ReactComponent as AddButton} from '../assets/plus-circle-multiple.svg'
 
 class Cv extends React.Component {
     constructor(props) {
@@ -11,50 +12,103 @@ class Cv extends React.Component {
         this.state = {
             sections: [
                 {
+                    type: 'info',
                     title: 'Personal Info',
-                    text: '',
-                    titleInEdit: false,
-                    descriptionInEdit: true,
+                    subsections: [
+                        {
+                            title: 'Name',
+                            data: 'test',
+                            id: uniqid(),
+                        },
+                        {
+                            title: 'Address',
+                            data: 'test',
+                            id: uniqid(),
+                        },
+                        {
+                            title: 'E-mail',
+                            data: 'test',
+                            id: uniqid(),
+                        },
+                        {
+                            title: 'Mobile no.',
+                            data: 'test',
+                            id: uniqid(),
+                        },
+                    ],
+                    newSubsection: {
+                        title: 'Info',
+                        data: '',
+                        id: uniqid(),
+                    },
+                    inEdit: true,
                     id: uniqid(),
                 },
                 {
-                    title: 'Education',
-                    text: '',
-                    titleInEdit: false,
-                    descriptionInEdit: true,
-                    id: uniqid(),
-                },
-                {
+                    type: 'experience',
                     title: 'Work Experience',
-                    text: '',
-                    titleInEdit: false,
-                    descriptionInEdit: true,
+                    subsections: [
+                        {
+                            company: '',
+                            title: '',
+                            dateFrom: '',
+                            dateTo: '',
+                            text: '',
+                            id: uniqid(),
+                        },
+                    ],
+                    newSubsection: {
+                        company: '',
+                        title: '',
+                        dateFrom: '',
+                        dateTo: '',
+                        text: '',
+                        id: uniqid(),
+                    },
+                    inEdit: true,
                     id: uniqid(),
                 },
                 {
+                    type: 'education',
+                    title: 'Education',
+                    subsections: [
+                        {
+                            school: '',
+                            title: '',
+                            dateFrom: '',
+                            dateTo: '',
+                            text: '',
+                            id: uniqid(),
+                        },
+                    ],
+                    newSubsection: {
+                        school: '',
+                        title: '',
+                        dateFrom: '',
+                        dateTo: '',
+                        text: '',
+                        id: uniqid(),
+                    },
+                    inEdit: true,
+                    id: uniqid(),
+                },
+                {
+                    type: 'general',
                     title: 'Skills',
-                    text: '',
-                    titleInEdit: false,
-                    descriptionInEdit: true,
+                    text: 'test',
+                    inEdit: false,
                     id: uniqid(),
                 },
             ],
-            section: {
-                title: 'New Section',
-                text: '',
-                titleInEdit: false,
-                descriptionInEdit: true,
-                id: uniqid(),
-            },
         }
     };
 
     render() {
-        const defaultSection = {
+        const newGeneralSection = {
+            type: 'general',
             title: 'New Section',
             text: '',
-            titleInEdit: false,
-            descriptionInEdit: true,
+            inEdit: true,
             id: uniqid(),
         };
 
@@ -78,7 +132,7 @@ class Cv extends React.Component {
                     this.setState(
                         {
                             sections: newArr,
-                            section: defaultSection,
+                            section: newGeneralSection,
                         }
                     );
                 } else {
@@ -91,7 +145,7 @@ class Cv extends React.Component {
                     this.setState(
                         {
                             sections: newArr,
-                            section: defaultSection,
+                            section: newGeneralSection,
                         }
                     );
 
@@ -108,7 +162,7 @@ class Cv extends React.Component {
                     this.setState(
                         {
                             sections: newArr,
-                            section: defaultSection,
+                            section: newGeneralSection,
                         }
                     );
                 } else if (inputType === 'edit') {
@@ -121,7 +175,7 @@ class Cv extends React.Component {
                     this.setState(
                         {
                             sections: newArr,
-                            section: defaultSection,
+                            section: newGeneralSection,
                         }
                     );
                 } else {
@@ -130,7 +184,7 @@ class Cv extends React.Component {
                     this.setState(
                         {
                             sections: newArr,
-                            section: defaultSection,
+                            section: newGeneralSection,
                         }
                     );
                 }
@@ -159,13 +213,13 @@ class Cv extends React.Component {
             this.setState(
                 {
                     sections: newArr,
-                    section: defaultSection,
+                    section: newGeneralSection,
                 }
             );
         };
 
         const addNewSection = () => {
-            const newArr = this.state.sections.concat(defaultSection);
+            const newArr = this.state.sections.concat(newGeneralSection);
             
             const newSection = {
                 title: 'New Section',
@@ -186,7 +240,7 @@ class Cv extends React.Component {
                 {
                     this.state.sections.map((section) => {
                         return (
-                            <Section sectionData={section} clickController={onInputClickHandler} inputController={onInputChangeHandler}/>
+                            <Section section={section} clickController={onInputClickHandler} inputController={onInputChangeHandler}/>
                         )
                     })
                 }
