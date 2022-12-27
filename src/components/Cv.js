@@ -2,7 +2,6 @@ import React from 'react';
 import uniqid from "uniqid";
 import './Cv.css';
 import Card from './UI/Card';
-import NewSection from './UI/NewSection';
 import Section from '../components/UI/Section'
 import {ReactComponent as AddButton} from '../assets/plus-circle-multiple.svg'
 
@@ -244,7 +243,7 @@ class Cv extends React.Component {
                         )
                     })
                 }
-                <NewSection clickController={addNewSection}/>
+                <AddButton className='add-button'/>                
             </Card>
         );
     };

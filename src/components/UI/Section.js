@@ -63,7 +63,7 @@ class Section extends React.Component {
                             )
                         })
                     }
-                    <AddButton/>
+                    <AddButton className='add-button'/>
                 </Card>
             );
         };
