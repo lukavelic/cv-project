@@ -197,38 +197,42 @@ class Cv extends React.Component {
             key: uniqid(),
         };
 
-        const actionHandler = (data) => {
-            const id = data.target.id;
-            const inputType = data.target.attributes["data-type"].value;
-            const parentId = data.target.attributes.getNamedItem('data-parentid').value;
-            const parentType = data.target.attributes.getNamedItem('data-parenttype').value
+        const onButtonClickHandler = (data) => {
+            console.log(data)
 
-            const parentIndex = this.state.sections.findIndex((section) => {
-                return section.key === parentId
-            });
-
-            const index = this.state.sections[parentIndex].subsections.findIndex((subsection) => {
-                return subsection.key === id
-            });
+            const inputType = data.target.attributes["data-type"].value
+            const sectionId = parseInt(data.target.id);
+            const parentId = parseInt(data.target.attributes["data-parentid"].value);
+            console.log(parentId)
 
             if(inputType === 'check') {
+                const section = {...this.state[sectionId]};
+                section.inEdit = false;
 
-
-                // const subsection = this.state.sections[parentIndex].subsections[index]
-                // subsection.inEdit = false;
-
-                // console.log(subsection);
-                
-                // const newArr = this.state.sections
-                // newArr[parentIndex].subsections[index] = subsection;
-
-                // console.log(newArr)
-                // console.log(this.state)
-
+                this.setState(
+                    {
+                        ...this.state,
+                        [sectionId]: section,
+                    }
+                );
             } else if(inputType === 'edit') {
-                console.log('')
+                const section = {...this.state[sectionId]};
+                section.inEdit = true;
+
+                this.setState(
+                    {
+                        ...this.state,
+                        [sectionId]: section,
+                    }
+                );
             } else {
-                console.log('')
+                const stateCopy = {...this.state};
+                const filteredChildIds = stateCopy[parentId].childIds.filter(id => id !== sectionId);
+
+                stateCopy[parentId].childIds = filteredChildIds;
+                delete stateCopy[sectionId];
+
+                this.setState(stateCopy);
             };
 
             // // if(isDescription === 'true') {
@@ -350,7 +354,7 @@ class Cv extends React.Component {
                 {
                     sectionIds.map((sectionId) => {
                         return (
-                            <Section key={sectionId} id={sectionId} sectionsById={this.state} actionHandler={actionHandler} inputHandler={onInputChangeHandler}/>
+                            <Section key={sectionId} id={sectionId} sectionsById={this.state} actionHandler={onButtonClickHandler} inputHandler={onInputChangeHandler}/>
                         )
                     })
                 }

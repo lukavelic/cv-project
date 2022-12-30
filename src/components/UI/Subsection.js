@@ -43,11 +43,11 @@ class Subsection extends React.Component {
             } else {
                 return(
                     <Card className='info-subsection'>
-                        <p>{this.props.subsection.company}</p>
-                        <p>{this.props.subsection.title}</p>
-                        <p>{this.props.subsection.dateFrom}</p>
-                        <p>{this.props.subsection.dateTo}</p>
-                        <p>{this.props.subsection.text}</p>
+                        <span>Company: </span><span>{this.props.subsection.company}</span>
+                        <span>Title: </span><span>{this.props.subsection.posiiton}</span>
+                        <span>From: </span><span>{this.props.subsection.dateFrom}</span>
+                        <span>To: </span><span>{this.props.subsection.dateTo}</span>
+                        <span>Description: </span><span>{this.props.subsection.text}</span>
                     </Card>
                 )
             }
@@ -70,11 +70,11 @@ class Subsection extends React.Component {
             } else {
                 return(
                     <Card className='info-subsection'>
-                        <p>{this.props.subsection.school}</p>
-                        <p>{this.props.subsection.title}</p>
-                        <p>{this.props.subsection.dateFrom}</p>
-                        <p>{this.props.subsection.dateTo}</p>
-                        <p>{this.props.subsection.text}</p>
+                        <span>School: </span><span>{this.props.subsection.school}</span>
+                        <span>Title: </span><span>{this.props.subsection.title}</span>
+                        <span>From: </span><span>{this.props.subsection.dateFrom}</span>
+                        <span>To: </span><span>{this.props.subsection.dateTo}</span>
+                        <span>Summary: </span><span>{this.props.subsection.text}</span>
                     </Card>
                 )
             };

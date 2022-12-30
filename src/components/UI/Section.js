@@ -36,7 +36,7 @@ class Section extends React.Component {
                     <Card className='section'>
                         <Card className='title-container'>
                             <input className='input title-input' type='text' id={section.id} placeholder="Please type details here..." onChange={inputHandler} defaultValue={section.title ? section.title  : ''}/>
-                            <InputControls type={section.type} inEdit={section.inEdit} id={section.id} actionHandler={actionHandler}/>
+                            <InputControls type={section.type} inEdit={section.inEdit} id={section.id} parentId={0} actionHandler={actionHandler}/>
                         </Card>
                         <Card className='description-container'>
                             <textarea className="input text-input" id={section.id} placeholder="Please type details here..." onChange={inputHandler} defaultValue={section.text ? section.text : ''}/>
@@ -50,7 +50,7 @@ class Section extends React.Component {
                             <p className="text title-text">
                                 {section.title}
                             </p>
-                            <InputControls type={section.type} inEdit={section.inEdit} id={section.id} actionHandler={actionHandler}/>
+                            <InputControls type={section.type} inEdit={section.inEdit} id={section.id} parentId={0} actionHandler={actionHandler}/>
                         </Card>
                         <Card className='description-container'>
                             <p className="text regular-text">
@@ -67,11 +67,12 @@ class Section extends React.Component {
                     {
                         childIds.map((id) => {
                             const subsection = this.props.sectionsById[id];
-                            console.log(subsection)
+                            {/* console.log(subsection) */}
+
                             return (
                                 <Card className='subsection' key={subsection.id}>
                                     <Subsection type={section.type} inEdit={subsection.inEdit} subsection={subsection}></Subsection>
-                                    <InputControls  type={section.type} inEdit={subsection.inEdit} id={subsection.id} actionHandler={actionHandler}/>
+                                    <InputControls  type={section.type} inEdit={subsection.inEdit} id={subsection.id} parentId={section.id} actionHandler={actionHandler}/>
                                 </Card>
                             )
                         })

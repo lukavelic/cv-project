@@ -15,20 +15,18 @@ class InputControls extends React.Component {
             this.props.actionHandler(e);
         };
 
-        // console.log(this.props.type)
-
         if(this.props.inEdit) {
             return (
                 <Card className='button-container'>
                     <CheckButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
-                    <DeleteButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
+                    <DeleteButton className='button' data-type='delete' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
                 </Card>
             )
         } else {
             return (
                 <Card className='button-container'>
-                    <EditButton className='button' data-type='check' data-parentyype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
-                    <DeleteButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
+                    <EditButton className='button' data-type='edit' data-parentyype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
+                    <DeleteButton className='button' data-type='delete' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
                 </Card>
             )
         };        
