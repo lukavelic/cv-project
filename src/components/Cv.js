@@ -8,107 +8,187 @@ import {ReactComponent as AddButton} from '../assets/plus-circle-multiple.svg'
 class Cv extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            sections: [
-                {
-                    type: 'info',
-                    title: 'Personal Info',
-                    subsections: [
-                        {
-                            title: 'Name',
-                            data: 'test',
-                            key: uniqid(),
-                            inEdit: true,
-                        },
-                        {
-                            title: 'Address',
-                            data: 'test',
-                            key: uniqid(),
-                            inEdit: true,
-                        },
-                        {
-                            title: 'E-mail',
-                            data: 'test',
-                            key: uniqid(),
-                            inEdit: true,
-                        },
-                        {
-                            title: 'Mobile no.',
-                            data: 'test',
-                            key: uniqid(),
-                            inEdit: true,
-                        },
-                    ],
-                    newSubsection: {
-                        title: 'Info',
-                        data: '',
-                        key: uniqid(),
-                        inEdit: true,
-                    },
-                    key: uniqid(),
-                },
-                {
-                    type: 'experience',
-                    title: 'Work Experience',
-                    subsections: [
-                        {
-                            company: '',
-                            title: '',
-                            dateFrom: '',
-                            dateTo: '',
-                            text: '',
-                            key: uniqid(),
-                            inEdit: true,
-                        },
-                    ],
-                    newSubsection: {
-                        company: '',
-                        title: '',
-                        dateFrom: '',
-                        dateTo: '',
-                        text: '',
-                        key: uniqid(),
-                        inEdit: true,
-                    },
-                    key: uniqid(),
-                },
-                {
-                    type: 'education',
-                    title: 'Education',
-                    subsections: [
-                        {
-                            school: '',
-                            title: '',
-                            dateFrom: '',
-                            dateTo: '',
-                            text: '',
-                            inEdit: true,
-                            key: uniqid(),
-                        },
-                    ],
-                    newSubsection: {
-                        school: '',
-                        title: '',
-                        dateFrom: '',
-                        dateTo: '',
-                        text: '',
-                        inEdit: true,
-                        key: uniqid(),
-                    },
-                    key: uniqid(),
-                },
-                {
-                    type: 'general',
-                    title: 'Skills',
-                    text: 'test',
-                    inEdit: false,
-                    key: uniqid(),
-                },
-            ],
+            0: {
+                id: 0,
+                type: '(root)',
+                childIds: [1,6,8,10]
+            },
+            1: {
+                id: 1,
+                type: 'info',
+                title: 'Personal Info',
+                childIds: [2,3,4,5],
+            },
+            2: {
+                id: 2,
+                title: 'Name',
+                data: '',
+                inEdit: true,
+            },
+            3: {
+                id: 3,
+                title: 'Address',
+                data: '',
+                inEdit: true,
+            },
+            4: {
+                id: 4,
+                title: 'E-Mail',
+                data: '',
+                inEdit: true,
+            },
+            5: {
+                id: 5,
+                title: 'Phone Number',
+                data: '',
+                inEdit: true,
+            },
+            6: {
+                id: 6,
+                type: 'experience',
+                title: 'Experience',
+                childIds: [7],
+            },
+            7: {
+                id: 7,
+                company: '',
+                position: '',
+                dateFrom: '',
+                dateTo: '',
+                text: '',
+                inEdit: true,
+            },
+            8: {
+                id: 8,
+                type: 'education',
+                title: 'Education',
+                childIds: [9],
+            },
+            9: {
+                id: 9,
+                school: '',
+                course: '',
+                dateFrom: '',
+                dateTo: '',
+                text: '',
+                inEdit: true,
+            },
+            10: {
+                id: 10,
+                type: 'general',
+                title: 'Skills',
+                text: 'Various',
+                inEdit: true,
+                childIds: [],
+            },
         }
+
+        // this.state = {
+        //     sections: [
+        //         {
+        //             type: 'info',
+        //             title: 'Personal Info',
+        //             subsections: [
+        //                 {
+        //                     title: 'Name',
+        //                     data: 'test',
+        //                     key: uniqid(),
+        //                     inEdit: true,
+        //                 },
+        //                 {
+        //                     title: 'Address',
+        //                     data: 'test',
+        //                     key: uniqid(),
+        //                     inEdit: true,
+        //                 },
+        //                 {
+        //                     title: 'E-mail',
+        //                     data: 'test',
+        //                     key: uniqid(),
+        //                     inEdit: true,
+        //                 },
+        //                 {
+        //                     title: 'Mobile no.',
+        //                     data: 'test',
+        //                     key: uniqid(),
+        //                     inEdit: true,
+        //                 },
+        //             ],
+        //             newSubsection: {
+        //                 title: 'Info',
+        //                 data: '',
+        //                 key: uniqid(),
+        //                 inEdit: true,
+        //             },
+        //             key: uniqid(),
+        //         },
+        //         {
+        //             type: 'experience',
+        //             title: 'Work Experience',
+        //             subsections: [
+        //                 {
+        //                     company: '',
+        //                     title: '',
+        //                     dateFrom: '',
+        //                     dateTo: '',
+        //                     text: '',
+        //                     key: uniqid(),
+        //                     inEdit: true,
+        //                 },
+        //             ],
+        //             newSubsection: {
+        //                 company: '',
+        //                 title: '',
+        //                 dateFrom: '',
+        //                 dateTo: '',
+        //                 text: '',
+        //                 key: uniqid(),
+        //                 inEdit: true,
+        //             },
+        //             key: uniqid(),
+        //         },
+        //         {
+        //             type: 'education',
+        //             title: 'Education',
+        //             subsections: [
+        //                 {
+        //                     school: '',
+        //                     title: '',
+        //                     dateFrom: '',
+        //                     dateTo: '',
+        //                     text: '',
+        //                     inEdit: true,
+        //                     key: uniqid(),
+        //                 },
+        //             ],
+        //             newSubsection: {
+        //                 school: '',
+        //                 title: '',
+        //                 dateFrom: '',
+        //                 dateTo: '',
+        //                 text: '',
+        //                 inEdit: true,
+        //                 key: uniqid(),
+        //             },
+        //             key: uniqid(),
+        //         },
+        //         {
+        //             type: 'general',
+        //             title: 'Skills',
+        //             text: 'test',
+        //             inEdit: false,
+        //             key: uniqid(),
+        //         },
+        //     ],
+        // }
     };
 
     render() {
+        const root = this.state[0];
+        const sectionIds = root.childIds;
+
         const newGeneralSection = {
             type: 'general',
             title: 'New Section',
@@ -130,12 +210,6 @@ class Cv extends React.Component {
             const index = this.state.sections[parentIndex].subsections.findIndex((subsection) => {
                 return subsection.key === id
             });
-
-            console.log(data)
-
-            console.log(parentIndex, index)
-
-            console.log(parentType, inputType)
 
             if(inputType === 'check') {
 
@@ -274,9 +348,9 @@ class Cv extends React.Component {
         return(
             <Card className='cv-container'>
                 {
-                    this.state.sections.map((section) => {
+                    sectionIds.map((sectionId) => {
                         return (
-                            <Section key={section.key} id={section.key} section={section} actionHandler={actionHandler} inputController={onInputChangeHandler}/>
+                            <Section key={sectionId} id={sectionId} sectionsById={this.state} actionHandler={actionHandler} inputHandler={onInputChangeHandler}/>
                         )
                     })
                 }
