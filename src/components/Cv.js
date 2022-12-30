@@ -81,129 +81,21 @@ class Cv extends React.Component {
                 title: 'Skills',
                 text: 'Various',
                 inEdit: true,
-                childIds: [],
             },
         }
-
-        // this.state = {
-        //     sections: [
-        //         {
-        //             type: 'info',
-        //             title: 'Personal Info',
-        //             subsections: [
-        //                 {
-        //                     title: 'Name',
-        //                     data: 'test',
-        //                     key: uniqid(),
-        //                     inEdit: true,
-        //                 },
-        //                 {
-        //                     title: 'Address',
-        //                     data: 'test',
-        //                     key: uniqid(),
-        //                     inEdit: true,
-        //                 },
-        //                 {
-        //                     title: 'E-mail',
-        //                     data: 'test',
-        //                     key: uniqid(),
-        //                     inEdit: true,
-        //                 },
-        //                 {
-        //                     title: 'Mobile no.',
-        //                     data: 'test',
-        //                     key: uniqid(),
-        //                     inEdit: true,
-        //                 },
-        //             ],
-        //             newSubsection: {
-        //                 title: 'Info',
-        //                 data: '',
-        //                 key: uniqid(),
-        //                 inEdit: true,
-        //             },
-        //             key: uniqid(),
-        //         },
-        //         {
-        //             type: 'experience',
-        //             title: 'Work Experience',
-        //             subsections: [
-        //                 {
-        //                     company: '',
-        //                     title: '',
-        //                     dateFrom: '',
-        //                     dateTo: '',
-        //                     text: '',
-        //                     key: uniqid(),
-        //                     inEdit: true,
-        //                 },
-        //             ],
-        //             newSubsection: {
-        //                 company: '',
-        //                 title: '',
-        //                 dateFrom: '',
-        //                 dateTo: '',
-        //                 text: '',
-        //                 key: uniqid(),
-        //                 inEdit: true,
-        //             },
-        //             key: uniqid(),
-        //         },
-        //         {
-        //             type: 'education',
-        //             title: 'Education',
-        //             subsections: [
-        //                 {
-        //                     school: '',
-        //                     title: '',
-        //                     dateFrom: '',
-        //                     dateTo: '',
-        //                     text: '',
-        //                     inEdit: true,
-        //                     key: uniqid(),
-        //                 },
-        //             ],
-        //             newSubsection: {
-        //                 school: '',
-        //                 title: '',
-        //                 dateFrom: '',
-        //                 dateTo: '',
-        //                 text: '',
-        //                 inEdit: true,
-        //                 key: uniqid(),
-        //             },
-        //             key: uniqid(),
-        //         },
-        //         {
-        //             type: 'general',
-        //             title: 'Skills',
-        //             text: 'test',
-        //             inEdit: false,
-        //             key: uniqid(),
-        //         },
-        //     ],
-        // }
     };
 
     render() {
         const root = this.state[0];
         const sectionIds = root.childIds;
-
-        const newGeneralSection = {
-            type: 'general',
-            title: 'New Section',
-            text: '',
-            inEdit: true,
-            key: uniqid(),
-        };
+        
 
         const onButtonClickHandler = (data) => {
-            console.log(data)
-
-            const inputType = data.target.attributes["data-type"].value
+            const inputType = data.target.dataset.type
+            const parentType = data.target.dataset.parentType
             const sectionId = parseInt(data.target.id);
-            const parentId = parseInt(data.target.attributes["data-parentid"].value);
-            console.log(parentId)
+            const parentId = data.target.dataset.parentId
+            console.log(inputType, parentType, sectionId, parentId)
 
             if(inputType === 'check') {
                 const section = {...this.state[sectionId]};
@@ -225,6 +117,63 @@ class Cv extends React.Component {
                         [sectionId]: section,
                     }
                 );
+            } else if(inputType === 'add') {
+                const id = Object.keys(this.state).length;
+                console.log(id)
+                const parentSection = {...this.state[parentId]};
+                console.log(parentSection)
+                parentSection.childIds.push(id);
+                
+                if(parentType === 'info') {
+                    this.setState({
+                        ...this.state,
+                        [id]: {
+                            id: id,
+                            title: '',
+                            data: '',
+                            inEdit: true,
+                        }
+                    })
+                } else if(parentType === 'experience') {
+                    this.setState({
+                        ...this.state,
+                        [id]: {
+                            id: id,
+                            company: '',
+                            position: '',
+                            dateFrom: '',
+                            dateTo: '',
+                            text: '',
+                            inEdit: true,
+                        }
+                    })
+                } else if(parentType === 'education') {
+                    this.setState({
+                        ...this.state,
+                        [id]: {
+                            id: id,
+                            school: '',
+                            course: '',
+                            dateFrom: '',
+                            dateTo: '',
+                            text: '',
+                            inEdit: true,
+                        }
+                    })
+                } else {
+                    this.setState({
+                        ...this.state,
+                        [id]: {
+                            id: id,
+                            type: 'general',
+                            title: '',
+                            text: '',
+                            inEdit: true,
+                            childIds: [],
+                        }
+                    })
+                }
+                console.log('add')
             } else {
                 const stateCopy = {...this.state};
                 const filteredChildIds = stateCopy[parentId].childIds.filter(id => id !== sectionId);
@@ -234,120 +183,22 @@ class Cv extends React.Component {
 
                 this.setState(stateCopy);
             };
-
-            // // if(isDescription === 'true') {
-            //     if(inputType === 'check') {
-            //         const section = this.state.sections[i]
-            //         section.descriptionInEdit = false;
-
-            //         const newArr = this.state.sections
-            //         newArr[i] = section;
-
-            //         this.setState(
-            //             {
-            //                 sections: newArr,
-            //                 section: newGeneralSection,
-            //             }
-            //         );
-            //     } else {
-            //         const section = this.state.sections[i]
-            //         section.descriptionInEdit = true;
-
-            //         const newArr = this.state.sections
-            //         newArr[i] = section;
-
-            //         this.setState(
-            //             {
-            //                 sections: newArr,
-            //                 section: newGeneralSection,
-            //             }
-            //         );
-
-
-            //     };
-            // // } else {
-            //     if(inputType === 'check') {
-            //         const section = this.state.sections[i]
-            //         section.titleInEdit = false;
-
-            //         const newArr = this.state.sections
-            //         newArr[i] = section;
-
-            //         this.setState(
-            //             {
-            //                 sections: newArr,
-            //                 section: newGeneralSection,
-            //             }
-            //         );
-            //     } else if (inputType === 'edit') {
-            //         const section = this.state.sections[i]
-            //         section.titleInEdit = true;
-
-            //         const newArr = this.state.sections
-            //         newArr[i] = section;
-
-            //         this.setState(
-            //             {
-            //                 sections: newArr,
-            //                 section: newGeeralSection,
-            //             }
-            //         );
-            //     } else {
-            //         const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i+1));
-
-            //         this.setState(
-            //             {
-            //                 sections: newArr,
-            //                 section: newGeneralSection,
-            //             }
-            //         );
-            //     // }
-            // }
         };
 
         const onInputChangeHandler = (data) => {
-            // const id = data.target.id;
-            // const isDescription = data.target.attributes['data-description'].value;
+            console.log(data)
+            const id = data.target.id;
+            const objIndex = parseInt(data.target.dataset.objIndex);
 
-            // const i = this.state.sections.findIndex((section) => {
-            //     return section.id === id
-            // });
+            const stateCopy = {...this.state};
 
-            // const section = this.state.sections[i]
+            stateCopy[objIndex] = {
+                ...stateCopy[objIndex],
+                [id]: data.target.value,
+            };
 
-            // if(isDescription === 'true') {
-            //     section.text = data.target.value;
-            // } else {
-            //     section.title = data.target.value;
-            // }
-
-            // const newArr = this.state.sections;
-            // newArr[i] = section;
-
-            // this.setState(
-            //     {
-            //         sections: newArr,
-            //         section: newGeneralSection,
-            //     }
-            // );
+            this.setState(stateCopy);         
         };
-
-        const addNewSection = () => {
-            // const newArr = this.state.sections.concat(newGeneralSection);
-            
-            // const newSection = {
-            //     title: 'New Section',
-            //     text: '',
-            //     titleInEdit: false,
-            //     descriptionInEdit: true,
-            //     key: uniqid(),
-            // };
-
-            // this.setState({
-            //     sections: newArr,
-            //     section: newSection,
-            // })
-        }
 
         return(
             <Card className='cv-container'>
@@ -358,7 +209,7 @@ class Cv extends React.Component {
                         )
                     })
                 }
-                <AddButton className='add-button'/>                
+                <AddButton className='add-button' data-type='add' data-parent-type='general' data-parent-id={0} onClick={onButtonClickHandler}/>                
             </Card>
         );
     };
