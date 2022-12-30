@@ -11,76 +11,27 @@ class InputControls extends React.Component {
     };
 
     render() {
-        const onClickHandler = (e) => {
-            // console.log(this.props)
-            this.props.determineClickData(e.target.attributes)
-
-            // if(e.target.attributes["data-type"].value === 'check') {
-            //     if(this.props.description) {
-
-            //     } else {
-
-            //     }
-            // } else if(e.target.attributes["data-type"].value === 'edit') {
-            //     if(this.props.description) {
-
-            //     } else {
-                    
-            //     }
-            // } else {
-
-            // };
+        const actionHandler = (e) => {
+            this.props.actionHandler(e);
         };
+
+        // console.log(this.props.type)
 
         if(this.props.inEdit) {
             return (
                 <Card className='button-container'>
-                    <CheckButton className='button' data-type='check' type={this.props.type} id={this.props.id} onClick={onClickHandler}/>
-                    <DeleteButton className='button' data-type='check' type={this.props.type} id={this.props.id} onClick={onClickHandler}/>
+                    <CheckButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
+                    <DeleteButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
                 </Card>
             )
         } else {
             return (
                 <Card className='button-container'>
-                    <EditButton className='button' data-type='check' type={this.props.type} id={this.props.id} onClick={onClickHandler}/>
-                    <DeleteButton className='button' data-type='check' type={this.props.type} id={this.props.id} onClick={onClickHandler}/>
+                    <EditButton className='button' data-type='check' data-parentyype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
+                    <DeleteButton className='button' data-type='check' data-parenttype={this.props.type} id={this.props.id} data-parentid={this.props.parentId} onClick={actionHandler}/>
                 </Card>
             )
-        }
-
-        // if(this.props.description) {
-        //     if(this.props.inEdit) {
-        //         return (
-        //             <Card className='button-container'>
-        //                 <CheckButton className='button' data-type='check' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //             </Card>
-        //         );
-        //     } else {
-        //         return (
-        //             <Card className='button-container'>
-        //                 <EditButton className='button' data-type='edit' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //             </Card>
-        //         ); 
-        //     }
-            
-        // } else {
-        //     if(this.props.inEdit) {
-        //         return (
-        //             <Card className='button-container'>
-        //                 <CheckButton className='button' data-type='check' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //                 <DeleteButton className='button' data-type='delete' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //             </Card>
-        //         );
-        //     } else {
-        //         return (
-        //             <Card className='button-container'>
-        //                 <EditButton className='button' data-type='edit' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //                 <DeleteButton className='button' data-type='delete' data-description={this.props.description} id={this.props.id} onClick={onClickHandler}/>
-        //             </Card>
-        //         ); 
-        //     }
-        // }
-        
+        };        
     };
 };
 

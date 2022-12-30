@@ -17,31 +17,35 @@ class Cv extends React.Component {
                         {
                             title: 'Name',
                             data: 'test',
-                            id: uniqid(),
+                            key: uniqid(),
+                            inEdit: true,
                         },
                         {
                             title: 'Address',
                             data: 'test',
-                            id: uniqid(),
+                            key: uniqid(),
+                            inEdit: true,
                         },
                         {
                             title: 'E-mail',
                             data: 'test',
-                            id: uniqid(),
+                            key: uniqid(),
+                            inEdit: true,
                         },
                         {
                             title: 'Mobile no.',
                             data: 'test',
-                            id: uniqid(),
+                            key: uniqid(),
+                            inEdit: true,
                         },
                     ],
                     newSubsection: {
                         title: 'Info',
                         data: '',
-                        id: uniqid(),
+                        key: uniqid(),
+                        inEdit: true,
                     },
-                    inEdit: true,
-                    id: uniqid(),
+                    key: uniqid(),
                 },
                 {
                     type: 'experience',
@@ -53,7 +57,8 @@ class Cv extends React.Component {
                             dateFrom: '',
                             dateTo: '',
                             text: '',
-                            id: uniqid(),
+                            key: uniqid(),
+                            inEdit: true,
                         },
                     ],
                     newSubsection: {
@@ -62,10 +67,10 @@ class Cv extends React.Component {
                         dateFrom: '',
                         dateTo: '',
                         text: '',
-                        id: uniqid(),
+                        key: uniqid(),
+                        inEdit: true,
                     },
-                    inEdit: true,
-                    id: uniqid(),
+                    key: uniqid(),
                 },
                 {
                     type: 'education',
@@ -77,7 +82,8 @@ class Cv extends React.Component {
                             dateFrom: '',
                             dateTo: '',
                             text: '',
-                            id: uniqid(),
+                            inEdit: true,
+                            key: uniqid(),
                         },
                     ],
                     newSubsection: {
@@ -86,17 +92,17 @@ class Cv extends React.Component {
                         dateFrom: '',
                         dateTo: '',
                         text: '',
-                        id: uniqid(),
+                        inEdit: true,
+                        key: uniqid(),
                     },
-                    inEdit: true,
-                    id: uniqid(),
+                    key: uniqid(),
                 },
                 {
                     type: 'general',
                     title: 'Skills',
                     text: 'test',
                     inEdit: false,
-                    id: uniqid(),
+                    key: uniqid(),
                 },
             ],
         }
@@ -108,130 +114,161 @@ class Cv extends React.Component {
             title: 'New Section',
             text: '',
             inEdit: true,
-            id: uniqid(),
+            key: uniqid(),
         };
 
-        const onInputClickHandler = (data) => {
-            const id = data.id.value;
-            const inputType = data['data-type'].value;
-            const isDescription = data['data-description'].value;
+        const actionHandler = (data) => {
+            const id = data.target.id;
+            const inputType = data.target.attributes["data-type"].value;
+            const parentId = data.target.attributes.getNamedItem('data-parentid').value;
+            const parentType = data.target.attributes.getNamedItem('data-parenttype').value
 
-            const i = this.state.sections.findIndex((section) => {
-                return section.id === id
+            const parentIndex = this.state.sections.findIndex((section) => {
+                return section.key === parentId
             });
 
-            if(isDescription === 'true') {
-                if(inputType === 'check') {
-                    const section = this.state.sections[i]
-                    section.descriptionInEdit = false;
+            const index = this.state.sections[parentIndex].subsections.findIndex((subsection) => {
+                return subsection.key === id
+            });
 
-                    const newArr = this.state.sections
-                    newArr[i] = section;
+            console.log(data)
 
-                    this.setState(
-                        {
-                            sections: newArr,
-                            section: newGeneralSection,
-                        }
-                    );
-                } else {
-                    const section = this.state.sections[i]
-                    section.descriptionInEdit = true;
+            console.log(parentIndex, index)
 
-                    const newArr = this.state.sections
-                    newArr[i] = section;
+            console.log(parentType, inputType)
 
-                    this.setState(
-                        {
-                            sections: newArr,
-                            section: newGeneralSection,
-                        }
-                    );
+            if(inputType === 'check') {
 
 
-                };
+                // const subsection = this.state.sections[parentIndex].subsections[index]
+                // subsection.inEdit = false;
+
+                // console.log(subsection);
+                
+                // const newArr = this.state.sections
+                // newArr[parentIndex].subsections[index] = subsection;
+
+                // console.log(newArr)
+                // console.log(this.state)
+
+            } else if(inputType === 'edit') {
+                console.log('')
             } else {
-                if(inputType === 'check') {
-                    const section = this.state.sections[i]
-                    section.titleInEdit = false;
+                console.log('')
+            };
 
-                    const newArr = this.state.sections
-                    newArr[i] = section;
+            // // if(isDescription === 'true') {
+            //     if(inputType === 'check') {
+            //         const section = this.state.sections[i]
+            //         section.descriptionInEdit = false;
 
-                    this.setState(
-                        {
-                            sections: newArr,
-                            section: newGeneralSection,
-                        }
-                    );
-                } else if (inputType === 'edit') {
-                    const section = this.state.sections[i]
-                    section.titleInEdit = true;
+            //         const newArr = this.state.sections
+            //         newArr[i] = section;
 
-                    const newArr = this.state.sections
-                    newArr[i] = section;
+            //         this.setState(
+            //             {
+            //                 sections: newArr,
+            //                 section: newGeneralSection,
+            //             }
+            //         );
+            //     } else {
+            //         const section = this.state.sections[i]
+            //         section.descriptionInEdit = true;
 
-                    this.setState(
-                        {
-                            sections: newArr,
-                            section: newGeneralSection,
-                        }
-                    );
-                } else {
-                    const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i+1));
+            //         const newArr = this.state.sections
+            //         newArr[i] = section;
 
-                    this.setState(
-                        {
-                            sections: newArr,
-                            section: newGeneralSection,
-                        }
-                    );
-                }
-            }
+            //         this.setState(
+            //             {
+            //                 sections: newArr,
+            //                 section: newGeneralSection,
+            //             }
+            //         );
+
+
+            //     };
+            // // } else {
+            //     if(inputType === 'check') {
+            //         const section = this.state.sections[i]
+            //         section.titleInEdit = false;
+
+            //         const newArr = this.state.sections
+            //         newArr[i] = section;
+
+            //         this.setState(
+            //             {
+            //                 sections: newArr,
+            //                 section: newGeneralSection,
+            //             }
+            //         );
+            //     } else if (inputType === 'edit') {
+            //         const section = this.state.sections[i]
+            //         section.titleInEdit = true;
+
+            //         const newArr = this.state.sections
+            //         newArr[i] = section;
+
+            //         this.setState(
+            //             {
+            //                 sections: newArr,
+            //                 section: newGeeralSection,
+            //             }
+            //         );
+            //     } else {
+            //         const newArr = this.state.sections.slice(0, i).concat(this.state.sections.slice(i+1));
+
+            //         this.setState(
+            //             {
+            //                 sections: newArr,
+            //                 section: newGeneralSection,
+            //             }
+            //         );
+            //     // }
+            // }
         };
 
         const onInputChangeHandler = (data) => {
-            const id = data.target.id;
-            const isDescription = data.target.attributes['data-description'].value;
+            // const id = data.target.id;
+            // const isDescription = data.target.attributes['data-description'].value;
 
-            const i = this.state.sections.findIndex((section) => {
-                return section.id === id
-            });
+            // const i = this.state.sections.findIndex((section) => {
+            //     return section.id === id
+            // });
 
-            const section = this.state.sections[i]
+            // const section = this.state.sections[i]
 
-            if(isDescription === 'true') {
-                section.text = data.target.value;
-            } else {
-                section.title = data.target.value;
-            }
+            // if(isDescription === 'true') {
+            //     section.text = data.target.value;
+            // } else {
+            //     section.title = data.target.value;
+            // }
 
-            const newArr = this.state.sections;
-            newArr[i] = section;
+            // const newArr = this.state.sections;
+            // newArr[i] = section;
 
-            this.setState(
-                {
-                    sections: newArr,
-                    section: newGeneralSection,
-                }
-            );
+            // this.setState(
+            //     {
+            //         sections: newArr,
+            //         section: newGeneralSection,
+            //     }
+            // );
         };
 
         const addNewSection = () => {
-            const newArr = this.state.sections.concat(newGeneralSection);
+            // const newArr = this.state.sections.concat(newGeneralSection);
             
-            const newSection = {
-                title: 'New Section',
-                text: '',
-                titleInEdit: false,
-                descriptionInEdit: true,
-                id: uniqid(),
-            };
+            // const newSection = {
+            //     title: 'New Section',
+            //     text: '',
+            //     titleInEdit: false,
+            //     descriptionInEdit: true,
+            //     key: uniqid(),
+            // };
 
-            this.setState({
-                sections: newArr,
-                section: newSection,
-            })
+            // this.setState({
+            //     sections: newArr,
+            //     section: newSection,
+            // })
         }
 
         return(
@@ -239,7 +276,7 @@ class Cv extends React.Component {
                 {
                     this.state.sections.map((section) => {
                         return (
-                            <Section section={section} clickController={onInputClickHandler} inputController={onInputChangeHandler}/>
+                            <Section key={section.key} id={section.key} section={section} actionHandler={actionHandler} inputController={onInputChangeHandler}/>
                         )
                     })
                 }
