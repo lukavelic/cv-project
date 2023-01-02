@@ -39,11 +39,13 @@ class Section extends React.Component {
                 return (
                     <Card className='section'>
                         <Card className='title-container'>
-                            <p className="text title-text">
+                            <div className='spacing-middle'></div>
+                            <p className="text title-large spacing-medium">
                                 {section.title}
                             </p>
                             <InputControls type={section.type} inEdit={section.inEdit} id={section.id} parentId={0} actionHandler={actionHandler}/>
                         </Card>
+                        <hr class="rounded"></hr>
                         <Card className='description-container'>
                             <p className="text regular-text">
                                 {section.text}
@@ -55,12 +57,14 @@ class Section extends React.Component {
         } else {
             return (
                 <Card className='section'>
-                    <p className="text-title">{section.title}</p>
+                    <p className="title-large">{section.title}</p>
+                    <hr class="rounded"></hr>
                     {
                         childIds.map((id) => {
                             const subsection = this.props.sectionsById[id];
                             return (
-                                <Card className='subsection' key={subsection.id}>
+                                <Card className='subsection-container' key={subsection.id}>
+                                    {/* <div className='spacing'></div> */}
                                     <Subsection type={section.type} inEdit={subsection.inEdit} id={subsection.id} subsection={subsection} inputHandler={inputHandler}></Subsection>
                                     <InputControls  type={section.type} inEdit={subsection.inEdit} id={subsection.id} parentId={section.id} actionHandler={actionHandler}/>
                                 </Card>

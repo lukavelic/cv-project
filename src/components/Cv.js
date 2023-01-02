@@ -153,7 +153,7 @@ class Cv extends React.Component {
                         [id]: {
                             id: id,
                             school: '',
-                            course: '',
+                            title: '',
                             dateFrom: '',
                             dateTo: '',
                             text: '',

@@ -1,3 +1,5 @@
+@import '../constants.css';
+
 .button {
     width: 24px;
     height: auto;
@@ -20,8 +22,8 @@ path {
 
 .button-container {
     display: flex;
-    border: none;
-    margin: 12px;
+
+    margin-left: var(--medium);
 }
 
 path {
